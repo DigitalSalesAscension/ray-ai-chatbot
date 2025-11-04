@@ -1,36 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>n8n Chat Test</title>
+<script type="module">
+  console.log("✅ Script loaded");
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/@n8n/chat@1.13.0/dist/style.css"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div id="n8n-chat"></div>
-    <p style="text-align:center;margin-top:2rem;color:#333;">
-      If you see this text, HTML is rendering fine.
-    </p>
+  import { createChat } from "https://cdn.jsdelivr.net/npm/@n8n/chat@1.13.0/dist/index.min.js";
 
-    <script type="module">
-      console.log("✅ Script loaded");
+  createChat({
+    webhookUrl: "https://digitalsalesascension.app.n8n.cloud/webhook/98cc7639-8db0-4008-986b-77efc74ce2d4/chat",
+    target: "#n8n-chat",
+    mode: "window",
+    showWelcomeScreen: true,
+    defaultLanguage: "en",
+    initialMessages: ["👋 Hi, this is a connection test!"],
+  });
 
-      import { createChat } from "https://cdn.jsdelivr.net/npm/@n8n/chat@1.13.0/dist/chat.js";
-
-      createChat({
-        webhookUrl: "https://digitalsalesascension.app.n8n.cloud/webhook/98cc7639-8db0-4008-986b-77efc74ce2d4/chat",
-        target: "#n8n-chat",
-        mode: "window",
-        showWelcomeScreen: true,
-        defaultLanguage: "en",
-        initialMessages: ["👋 Hi, this is a connection test!"],
-      });
-
-      console.log("✅ Chat created");
-    </script>
-  </body>
-</html>
+  console.log("✅ Chat created");
+</script>
