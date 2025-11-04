@@ -1,31 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Luna Chat</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@n8n/chat@0.11.0/dist/style.css" />
-  <style>
-    html, body { margin:0; height:100%; }
-    #n8n-chat { width:100%; height:100vh; }
-  </style>
-</head>
-<body>
-  <div id="n8n-chat"></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Luna Chat</title>
 
-  <script type="module">
-    // If jsDelivr has an issue, swap this line for the unpkg line below.
-    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat@0.11.0/dist/chat.js';
-    // import { createChat } from 'https://unpkg.com/@n8n/chat@0.11.0/dist/chat.js';
+    <!-- Load n8n Chat widget -->
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat@latest/dist/style.css" rel="stylesheet" />
+  </head>
 
-    createChat({
-      webhookUrl: 'https://digitalsalesascension.app.n8n.cloud/webhook/98cc7639-8db0-4008-986b-77efc74ce2d4/chat',
-      target: '#n8n-chat',
-      mode: 'window',              // use 'window' first to verify render; switch to 'fullscreen' after it shows
-      showWelcomeScreen: true,
-      enableStreaming: true,
-      initialMessages: ['👋 Hi! I’m Luna.'],
-    });
-  </script>
-</body>
+  <body>
+    <div id="n8n-chat"></div>
+
+    <script type="module">
+      import { createChat } from "https://cdn.jsdelivr.net/npm/@n8n/chat@latest/dist/chat.js";
+
+      createChat({
+        webhookUrl: "https://digitalsalesascension.app.n8n.cloud/webhook/98cc7639-8db0-4008-986b-77efc74ce2d4/chat",
+        target: "#n8n-chat",
+        mode: "window",                // 'window' = chat bubble, 'fullscreen' = full-page
+        showWelcomeScreen: true,
+        enableStreaming: true,
+        defaultLanguage: "en",
+        initialMessages: ["👋 Hi! I’m Luna — how can I help you today?"],
+        i18n: {
+          en: {
+            title: "Chat with Luna 💬",
+            subtitle: "Ask me anything!",
+            inputPlaceholder: "Type your message...",
+          },
+        },
+      });
+    </script>
+  </body>
 </html>
