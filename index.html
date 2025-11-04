@@ -1,16 +1,43 @@
-<script type="module">
-  console.log("✅ Script loaded");
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Luna Chat</title>
+  <!-- n8n stylesheet (embed) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@n8n/chat@latest/dist/style.css" />
+  <style>
+    html,body{height:100%;margin:0}
+    #n8n-chat{width:100%;height:100vh}
+  </style>
+</head>
+<body>
+  <div id="n8n-chat"></div>
 
-  import { createChat } from "https://cdn.jsdelivr.net/npm/@n8n/chat@1.13.0/dist/index.min.js";
+  <!-- embed script (deferred) -->
+  <script src="https://cdn.jsdelivr.net/npm/@n8n/chat@latest/dist/embed.js" defer></script>
 
-  createChat({
-    webhookUrl: "https://digitalsalesascension.app.n8n.cloud/webhook/98cc7639-8db0-4008-986b-77efc74ce2d4/chat",
-    target: "#n8n-chat",
-    mode: "window",
-    showWelcomeScreen: true,
-    defaultLanguage: "en",
-    initialMessages: ["👋 Hi, this is a connection test!"],
-  });
+  <script>
+    window.addEventListener('load', () => {
+      if (!window.n8nChat) {
+        console.error('n8n embed script did not load (window.n8nChat missing)');
+        return;
+      }
 
-  console.log("✅ Chat created");
-</script>
+      try {
+        window.n8nChat.init({
+          webhookUrl: 'https://digitalsalesascension.app.n8n.cloud/webhook/98cc7639-8db0-4008-986b-77efc74ce2d4/chat',
+          target: '#n8n-chat',
+          mode: 'window',
+          showWelcomeScreen: true,
+          enableStreaming: true,
+          initialMessages: ['👋 Hi — Luna here. How can I help?']
+        });
+        console.log('✅ n8nChat.init called');
+      } catch (err) {
+        console.error('n8nChat.init failed:', err);
+      }
+    });
+  </script>
+</body>
+</html>
